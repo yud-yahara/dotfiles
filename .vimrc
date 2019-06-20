@@ -77,6 +77,12 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 
 "<系統>キーボード
-"ESCをcontrol-jで打てるように
-noremap <C-j> <esc>
-noremap! <C-j> <esc>
+"ESCをjjで打てるように
+noremap <silent> jj <esc>
+noremap! <silent> jj <esc>
+
+"入力モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
