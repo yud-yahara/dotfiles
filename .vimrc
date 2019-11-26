@@ -22,6 +22,9 @@ set number
 "現在の行を強調表示
 set cursorline
 
+"自動インデント
+set autoindent
+
 "インデントはスマートインデント
 set smartindent
 
@@ -30,6 +33,7 @@ set visualbell
 
 "括弧入力時の対応する括弧を表示
 set showmatch
+set matchtime=1
 
 "コマンドラインの補完
 set wildmode=list:longest
@@ -79,11 +83,27 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 "<系統>キーボード
 "insertモードでESCをjjで打てるように
 inoremap <silent> jj <esc>
+"日本語入力状態でjjを押してもESCになるように
+inoremap <silent> っj <esc>
+
+
 "ESCをc-jで打てるように
 noremap <C-j> <esc>
+inoremap <silent> <C-j> <esc>
 
 "入力モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+
+"<Plug in>
+"for tex
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+call plug#end()
+
+let g:vimtex_compiler_latexmk = {'background':1, 'build_dir':'', 'continuous':1, 'options':['-pdfdvi','-verbose','-file-line-error','-synctex=1','-interaction=nonstopmode',],}
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
