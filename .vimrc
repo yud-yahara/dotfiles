@@ -48,6 +48,15 @@ syntax enable
 "カラースキームの設定
 colorscheme default 
 
+"ヤンクした内容を別ウィンドウにペーストできるように
+"set clipboard=unnamed,autoselect
+
+"Undoの永続化
+if has('persintent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif
+
 
 "<系統>Tab系
 "Tab文字を半角スペースにする
@@ -82,14 +91,14 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "<系統>キーボード
 "insertモードでESCをjjで打てるように
-inoremap <silent> jj <esc>
+inoremap jj <Esc>
 "日本語入力状態でjjを押してもESCになるように
-inoremap <silent> っj <esc>
+inoremap っj <Esc>
 
 
 "ESCをc-jで打てるように
-noremap <C-j> <esc>
-inoremap <silent> <C-j> <esc>
+noremap <C-j> <Esc>
+inoremap  <C-j> <Esc>
 
 "入力モードでのカーソル移動
 "inoremap <C-j> <Down>
@@ -97,6 +106,9 @@ inoremap <silent> <C-j> <esc>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
+"英語のスペルチェック
+set spell
+set spelllang=en,cjk
 
 "<Plug in>
 "for tex
@@ -107,3 +119,25 @@ call plug#end()
 let g:vimtex_compiler_latexmk = {'background':1, 'build_dir':'', 'continuous':1, 'options':['-pdfdvi','-verbose','-file-line-error','-synctex=1','-interaction=nonstopmode',],}
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+"for markdown
+"call plug#begin('~/.vim/vim-markdown')
+"Plug 'tpope/vim-markdown'
+"call plug#end()
+"call plug#begin('~/.vim/previm')
+"Plug 'kannokanno/previm'
+"call plug#end()
+"call plug#begin('~/.vim/open-browser.vim')
+"Plug 'tyru/open-browser.vim'
+"call plug#end()
+"" Need: kannokanno/previm
+"let g:previm_open_cmd = 'open -a Google Chrome'
+"augroup PrevimSettings
+"    autocmd!
+"    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+"augroup END
+"nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
+"" 自動で折りたたまないようにする
+"let g:vim_markdown_folding_disabled=1
+"let g:previm_enable_realtime = 1
+"
