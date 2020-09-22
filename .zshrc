@@ -7,6 +7,7 @@ alias ls='ls -G'
 
 # for Python3
 export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/bin:/usr/bin:"$PATH
 
 # for TeX
 PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-darwin/

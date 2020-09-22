@@ -15,6 +15,16 @@ set hidden
 set showcmd
 
 
+"<補完>
+"コマンドラインの補完
+set wildmode=list:longest
+
+"コードの自動補完
+call plug#begin('~/.vim/plugged')
+Plug 'Shougo/deoplete.vim'
+call plug#end()
+
+
 "<系統>見た目系
 "行番号を表示
 set number
@@ -35,8 +45,8 @@ set visualbell
 set showmatch
 set matchtime=1
 
-"コマンドラインの補完
-set wildmode=list:longest
+
+
 
 "折り返し時に表示行単位での移動ができるようにする
 nnoremap j gj
@@ -46,7 +56,11 @@ nnoremap k gk
 syntax enable
 
 "カラースキームの設定
-colorscheme default 
+call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+call plug#end()
+colorscheme molokai
+hi Comment ctermfg=DarkBlue
 
 "ヤンクした内容を別ウィンドウにペーストできるように
 "set clipboard=unnamed,autoselect
