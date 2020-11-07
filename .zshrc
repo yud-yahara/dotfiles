@@ -1,8 +1,13 @@
-# ~./bashrc
+#! ~/.zshrc
 
 source ~/.zprofile
 
 alias ls='ls -G'
+alias hendel='ssh yahara@hendel.ishilab.net'
+alias chopin='ssh yahara@chopin.ishilab.net'
+alias vivaldi='ssh yahara@vivaldi.ishilab.net'
+alias wagner='ssh yahara@wagner.ishilab.net'
+alias bach='ssh yahara@bach.ishilab.net'
 #alias vim='mvim -v'
 
 # for Python3

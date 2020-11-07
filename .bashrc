@@ -1,4 +1,4 @@
-# ~./bashrc
+#! ~/.bashrc
 
 alias ls='ls -G'
 #alias vim='mvim -v'
