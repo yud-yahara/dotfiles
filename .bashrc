@@ -1,4 +1,4 @@
-# ~./bashrc
+#! ~/.bashrc
 
 alias ls='ls --color=auto'
 alias bat='/usr/local/bat/bat'

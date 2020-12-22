@@ -108,7 +108,8 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap jj <Esc>
 "日本語入力状態でjjを押してもESCになるように
 inoremap っj <Esc>
-
+"backspace効かないことへの対処
+set backspace=indent,eol,start
 
 "ESCをc-jで打てるように
 noremap <C-j> <Esc>
