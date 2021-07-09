@@ -14,15 +14,43 @@ set hidden
 "入力中のコマンドをステータスに表示する
 set showcmd
 
+" plugin
+call plug#begin('~/.vim/plugged')
+
+"カラースキーム
+Plug 'tomasr/molokai'
+
+"コードの自動補完
+Plug 'Shougo/deoplete.nvim'
+"括弧をカラフルに
+Plug 'luochen1990/rainbow'
+
+"ファイルツリーを表示
+Plug 'lambdalisue/fern.vim'
+"ファイルツリーにgitの差分を表示
+Plug 'lambdalisue/fern-git-status.vim'
+"ファイルツリーにフォントを表示
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+"ファイルツリーのアイコンに色
+Plug 'lambdalisue/glyph-palette.vim'
+"ステータスバーカスタム
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"gitの差分を表示
+Plug 'airblade/vim-gitgutter'
+"for tex
+Plug 'lervag/vimtex'
+
+"for LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()
+
 
 "<補完>
 "コマンドラインの補完
 set wildmode=list:longest
-
-"コードの自動補完
-call plug#begin('~/.vim/plugged')
-Plug 'Shougo/deoplete.vim'
-call plug#end()
 
 
 "<系統>見た目系
@@ -46,8 +74,6 @@ set showmatch
 set matchtime=1
 
 
-
-
 "折り返し時に表示行単位での移動ができるようにする
 nnoremap j gj
 nnoremap k gk
@@ -56,9 +82,6 @@ nnoremap k gk
 syntax enable
 
 "カラースキームの設定
-call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
-call plug#end()
 colorscheme molokai
 hi Comment ctermfg=DarkBlue
 
@@ -70,6 +93,18 @@ if has('persintent_undo')
     set undodir=~/.vim/undo
     set undofile
 endif
+
+"C-nでファイルツリーを表示/非表示
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+
+"ファイルツリーにアイコンを表示
+let g:fern#renderer = 'nerdfont'
+" アイコンに色をつける 
+augroup my-glyph-palette   
+    autocmd! *   
+    autocmd FileType fern call glyph_palette#apply()   
+    autocmd FileType nerdtree,startify call glyph_palette#apply() 
+augroup END
 
 
 "<系統>Tab系
@@ -84,11 +119,14 @@ set shiftwidth=4
 
 
 "<系統>検索系
-"検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
+"検索文字列を大文字小文字を区別して検索する
+set noignorecase
 
-"検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
+""検索文字列が小文字の場合は大文字小文字を区別なく検索する
+"set ignorecase
+"
+""検索文字列に大文字が含まれている場合は区別して検索する
+"set smartcase
 
 "検索文字列入力時に順次対象文字列のヒットさせる
 set incsearch
@@ -115,25 +153,60 @@ set backspace=indent,eol,start
 noremap <C-j> <Esc>
 inoremap  <C-j> <Esc>
 
-"入力モードでのカーソル移動
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" InsertモードでEmacsのキーバインドを使えるようにする
+imap <C-p> <Up>
+imap <C-n> <Down>
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-a> <C-o>:call <SID>home()<CR>
+imap <C-e> <End>
+imap <C-d> <Del>
+imap <C-h> <BS>
+imap <C-k> <C-r>=<SID>kill()<CR>
+
+"xで削除した時はヤンクしない
+vnoremap x "_x
+nnoremap x "_x
+
+" 括弧の補完
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+" クオーテーションの補完
+inoremap ' ''<LEFT>
+inoremap " ""<LEFT>
 
 "英語のスペルチェック
 set spell
 set spelllang=en,cjk
 
-"<Plug in>
-"for tex
-call plug#begin('~/.vim/plugged')
-Plug 'lervag/vimtex'
-call plug#end()
+"for git
+"" git操作
+" g]で前の変更箇所へ移動する
+nnoremap g[ :GitGutterPrevHunk<CR>
+" g[で次の変更箇所へ移動する
+nnoremap g] :GitGutterNextHunk<CR>
+" ghでdiffをハイライトする
+nnoremap gh :GitGutterLineHighlightsToggle<CR>
+" gpでカーソル行のdiffを表示する
+nnoremap gp :GitGutterPreviewHunk<CR>
+" 記号の色を変更する
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=blue
+highlight GitGutterDelete ctermfg=red
 
+"" 反映時間を短くする(デフォルトは4000ms)
+set updatetime=250
+
+
+"for tex
 let g:vimtex_compiler_latexmk = {'background':1, 'build_dir':'', 'continuous':1, 'options':['-pdfdvi','-verbose','-file-line-error','-synctex=1','-interaction=nonstopmode',],}
+let g:latex_latexmk_options = '-pdf'
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+let g:tex_flavor = "latex"
 
 "for markdown
 "call plug#begin('~/.vim/vim-markdown')
