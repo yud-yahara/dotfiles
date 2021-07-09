@@ -1,7 +1,9 @@
 #! ~/.bashrc
 
-alias ls='ls -G'
+alias ls='ls --color=auto'
+alias bat='/usr/local/bat/bat'
 #alias vim='mvim -v'
+alias scen='~/work/Scenargie/visuallab/Scenargie'
 
 export PATH=/usr/local/bin:$PATH
 
