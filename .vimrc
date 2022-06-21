@@ -89,7 +89,7 @@ hi Comment ctermfg=DarkBlue
 "set clipboard=unnamed,autoselect
 
 "Undoの永続化
-if has('persintent_undo')
+if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
 endif

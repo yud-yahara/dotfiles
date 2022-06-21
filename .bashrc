@@ -1,7 +1,8 @@
 #! ~/.bashrc
 
 alias ls='ls --color=auto'
-alias bat='/usr/local/bat/bat'
+# alias bat='/usr/local/bat/bat'
+alias bat='/usr/bin/batcat'
 #alias vim='mvim -v'
 alias scen='~/work/Scenargie/visuallab/Scenargie'
 
