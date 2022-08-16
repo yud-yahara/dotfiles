@@ -10,6 +10,10 @@ alias scen='~/work/Scenargie/visuallab/Scenargie'
 
 export PATH=/usr/local/bin:$PATH
 
+# for gitbash (can make symlinks)
+export MSYS=winsymlinks:nativestrict
+
 #for TeX
 PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-darwin/
+
 

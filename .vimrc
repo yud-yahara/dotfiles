@@ -181,6 +181,12 @@ inoremap " ""<LEFT>
 set spell
 set spelllang=en,cjk
 
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi clear SpellCap
+hi SpellCap cterm=underline,bold
+
+
 "for git
 "" git操作
 " g]で前の変更箇所へ移動する
