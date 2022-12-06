@@ -3,6 +3,7 @@
 export PS1='\[\033[34m\]\t \u\[\033[0m\]:\[\033[32m\]\w\[\033[0m\]\n\$ '
 
 alias ls='ls --color=auto'
+alias grep='grep --color'
 # alias bat='/usr/local/bat/bat'
 alias bat='/usr/bin/batcat'
 #alias vim='mvim -v'
