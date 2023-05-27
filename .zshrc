@@ -3,16 +3,16 @@
 source ~/.zprofile
 
 alias ls='ls -G'
-alias hendel='ssh yahara@hendel.ishilab.net'
-alias chopin='ssh yahara@chopin.ishilab.net'
+alias hendel='ssh hendel'
+alias chopin='ssh chopin'
 alias vivaldi='ssh yahara@vivaldi.ishilab.net'
-alias wagner='ssh yahara@wagner.ishilab.net'
-alias bach='ssh yahara@bach.ishilab.net'
+alias wagner='ssh wagner'
+alias bach='ssh bach'
 #alias vim='mvim -v'
 
-# for Python3
+eval "$(starship init zsh)"
+
 export PATH=/usr/local/bin:$PATH
-export PATH="/usr/local/bin:/usr/bin:"$PATH
 
 # for TeX
 PATH=$PATH:/usr/local/texlive/2019/bin/x86_64-darwin/
@@ -56,3 +56,10 @@ setopt inc_append_history
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="/usr/local/opt/bison/bin:$PATH"
+export PATH="/usr/local/opt/flex/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/flex/lib -L/usr/local/opt/bison/lib"
+export CPPFLAGS="-I/usr/local/opt/flex/include"

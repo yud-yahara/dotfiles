@@ -1,0 +1,20 @@
+# ~/.config/starship.toml
+
+
+# プロンプトの 先頭での改行を無効にする
+add_newline = false
+
+[character]
+success_symbol = "[>](green)"
+error_symbol = "[>](red)"
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+
+[time]
+disabled = false
+time_format = "%T"
+
+# カスタムフォーマットを利用します
+format = '[$time ](blue)'
