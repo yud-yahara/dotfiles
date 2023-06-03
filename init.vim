@@ -15,7 +15,7 @@ set hidden
 set showcmd
 
 " plugin
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 "カラースキーム
 Plug 'tomasr/molokai'
@@ -41,6 +41,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 "for tex
 Plug 'lervag/vimtex'
+"github copilot
+Plug 'github/copilot.vim'
 
 "for LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
